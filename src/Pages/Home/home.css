@@ -22,7 +22,7 @@ html, body {
 }
 
 .card {
-    width: 500px;
+    width: 700px;
     margin: 50px auto;
     padding: 20px;
     border-radius: 10px;
@@ -47,6 +47,7 @@ html, body {
     border-radius: 5px;
     cursor: pointer;
     font-size: 1em;
+    width: 300px;
 }
   
 .find-job {

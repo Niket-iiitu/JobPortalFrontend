@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+import { addJob } from "../../API/Job";
+
 import "./JobAdd.css";
 
 function JobAdd() {
@@ -39,8 +41,6 @@ function JobAdd() {
         const selectedDate = new Date(value);
         const minDate = new Date();
         minDate.setDate(minDate.getDate() + MIN_DAYS_BEFORE_LAST_DATE);
-        console.log(selectedDate);
-        console.log(minDate);
         if (selectedDate.getDate() < minDate.getDate()) {
           alert("Please select a date at least 1 day in the future.");
           return;
@@ -53,10 +53,11 @@ function JobAdd() {
     });
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    // You can handle form submission logic here, e.g., sending data to backend
-    console.log(formData);
+    //Submiting data to DB
+    console.log(addJob(formData));
+
     // Reset form fields after submission
     setFormData({
       companyName: "",
