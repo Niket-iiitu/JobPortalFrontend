@@ -11,17 +11,13 @@ async function addJob(jobDetails) {
       }
     );
 
-    if (!response.ok) {
-      throw new Error("Network response error");
+    const data = await response.text();
+    if (data === "Done") {
+      return "Job added Successfully!!!";
+    } else if (data === "Error") {
+      return "Error occurred while submitting Data. Please try after some time.";
     } else {
-      const data = await response.json();
-      if (data === "Done") {
-        return "Job added Successfully!!!";
-      } else if (data === "Error") {
-        return "Error occurred while submitting Data. Please try after some time.";
-      } else {
-        return "Unknown error occurred. Please recheck the details or try after some time.";
-      }
+      return "Unknown error occurred. Please recheck the details or try after some time.";
     }
   } catch (error) {
     console.log(error.toString);

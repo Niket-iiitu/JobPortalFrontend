@@ -1,7 +1,5 @@
 import React, { useState } from "react";
-
 import { addJob } from "../../API/Job";
-
 import "./JobAdd.css";
 
 function JobAdd() {
@@ -18,19 +16,6 @@ function JobAdd() {
     lastDate: "",
   });
 
-  // Destructure formData for easier access
-  const {
-    companyName,
-    location,
-    experience,
-    jobTitle,
-    skillsRequired,
-    position,
-    salary,
-    lastDate,
-  } = formData;
-
-  // Handle form input changes
   const handleChange = (e) => {
     const { name, value } = e.target;
     if (name === "lastDate") {
@@ -55,10 +40,9 @@ function JobAdd() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    //Submiting data to DB
-    console.log(addJob(formData));
+    var res = await addJob(formData);
+    alert(res);
 
-    // Reset form fields after submission
     setFormData({
       companyName: "",
       location: "",
@@ -82,7 +66,7 @@ function JobAdd() {
               type="text"
               id="companyName"
               name="companyName"
-              value={companyName}
+              value={formData.companyName}
               onChange={handleChange}
               required
             />
@@ -93,7 +77,7 @@ function JobAdd() {
               type="text"
               id="location"
               name="location"
-              value={location}
+              value={formData.location}
               onChange={handleChange}
               required
             />
@@ -104,7 +88,7 @@ function JobAdd() {
               type="number"
               id="experience"
               name="experience"
-              value={experience}
+              value={formData.experience}
               onChange={handleChange}
               min="0"
               step="1"
@@ -117,7 +101,7 @@ function JobAdd() {
               type="text"
               id="jobTitle"
               name="jobTitle"
-              value={jobTitle}
+              value={formData.jobTitle}
               onChange={handleChange}
               required
             />
@@ -128,7 +112,7 @@ function JobAdd() {
               type="text"
               id="position"
               name="position"
-              value={position}
+              value={formData.position}
               onChange={handleChange}
               required
             />
@@ -139,7 +123,7 @@ function JobAdd() {
               type="text"
               id="skillsRequired"
               name="skillsRequired"
-              value={skillsRequired}
+              value={formData.skillsRequired}
               onChange={handleChange}
               required
             />
@@ -150,7 +134,7 @@ function JobAdd() {
               type="number"
               id="salary"
               name="salary"
-              value={salary}
+              value={formData.salary}
               onChange={handleChange}
               min="100000"
               step="1"
@@ -163,7 +147,7 @@ function JobAdd() {
               type="date"
               id="lastDate"
               name="lastDate"
-              value={lastDate}
+              value={formData.lastDate}
               onChange={handleChange}
               required
             />
